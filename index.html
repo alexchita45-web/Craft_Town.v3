@@ -1,25 +1,656 @@
 <!DOCTYPE html>
-<html xmlns:o="urn:schemas-microsoft-com:office:office" 
-xmlns:w="urn:schemas-microsoft-com:office:word" 
-xmlns="http://www.w3.org/TR/REC-html40">
+<html lang="ru">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<!--[if gte mso 9]><xml>
- <w:WordDocument>
-  <w:View>Print</w:View>
-  <w:GrammarState>Clean</w:GrammarState>
-  <w:ValidateAgainstSchemas/>
-  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>
-  <w:IgnoreMixedContent>false</w:IgnoreMixedContent>
-  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>
-  <w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel>
- </w:WordDocument>
-</xml><![endif]--><!--[if gte mso 9]><xml>
- <w:LatentStyles DefLockedState="false" LatentStyleCount="156">
- </w:LatentStyles>
-</xml><![endif]-->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Craft Town — Цифровое Меню</title>
 <style>
+:root {
+--bg-color: #121212;
+--card-bg: #1e1e1e;
+--accent-color: #ffb703;
+--accent-hover: #fb8500;
+--text-main: #f8f9fa;
+--text-muted: #adb5bd;
+--border-color: #2a2a2a;
+}
 
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+-webkit-tap-highlight-color: transparent;
+}
+
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+background: var(--bg-color);
+color: var(--text-main);
+line-height: 1.5;
+padding-bottom: 60px;
+}
+
+.header {
+text-align: center;
+padding: 40px 20px 20px;
+background: linear-gradient(180deg, rgba(255,183,3,0.1) 0%, rgba(18,18,18,0) 100%);
+}
+
+.header h1 {
+font-size: 28px;
+font-weight: 800;
+letter-spacing: 1px;
+color: var(--text-main);
+text-transform: uppercase;
+margin-bottom: 5px;
+}
+
+.header p {
+color: var(--accent-color);
+font-size: 14px;
+letter-spacing: 2px;
+text-transform: uppercase;
+font-weight: 600;
+}
+
+.nav-categories {
+position: sticky;
+top: 0;
+background: rgba(18, 18, 18, 0.95);
+backdrop-filter: blur(10px);
+z-index: 100;
+border-bottom: 1px solid var(--border-color);
+overflow-x: auto;
+white-space: nowrap;
+display: flex;
+padding: 10px;
+scrollbar-width: none;
+}
+
+.nav-categories::-webkit-scrollbar {
+display: none;
+}
+
+.nav-btn {
+display: inline-block;
+background: none;
+border: none;
+color: var(--text-muted);
+padding: 8px 16px;
+font-size: 14px;
+font-weight: 600;
+text-decoration: none;
+border-radius: 20px;
+transition: all 0.3s ease;
+margin-right: 8px;
+}
+
+.nav-btn:active, .nav-btn.active {
+background: var(--accent-color);
+color: #000;
+}
+
+.container {
+max-width: 600px;
+margin: 0 auto;
+padding: 20px;
+}
+
+.section-category {
+margin-bottom: 40px;
+scroll-margin-top: 70px;
+}
+
+.mascot-banner {
+background: var(--card-bg);
+border-radius: 16px;
+padding: 20px;
+margin-bottom: 20px;
+border: 1px solid var(--border-color);
+display: flex;
+align-items: center;
+gap: 15px;
+position: relative;
+overflow: hidden;
+}
+
+.mascot-avatar {
+width: 70px;
+height: 70px;
+background: #2a2a2a;
+border-radius: 50px;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 2px solid var(--accent-color);
+font-size: 30px;
+flex-shrink: 0;
+}
+
+.mascot-info h2 {
+font-size: 18px;
+color: var(--text-main);
+margin-bottom: 4px;
+}
+
+.mascot-info p {
+font-size: 13px;
+color: var(--accent-color);
+font-style: italic;
+}
+
+.menu-list {
+display: flex;
+flex-direction: column;
+gap: 16px;
+}
+
+.menu-item {
+background: var(--card-bg);
+border-radius: 12px;
+padding: 16px;
+border: 1px solid var(--border-color);
+transition: transform 0.2s ease;
+}
+
+.menu-item:active {
+transform: scale(0.98);
+}
+
+.item-main {
+display: flex;
+justify-content: space-between;
+align-items: flex-start;
+gap: 10px;
+margin-bottom: 6px;
+}
+
+.item-title {
+font-size: 16px;
+font-weight: 700;
+color: var(--text-main);
+}
+
+.item-price {
+font-size: 16px;
+font-weight: 700;
+color: var(--accent-color);
+white-space: nowrap;
+background: rgba(255, 183, 3, 0.1);
+padding: 2px 10px;
+border-radius: 8px;
+}
+
+.item-meta {
+font-size: 13px;
+color: var(--text-muted);
+margin-bottom: 4px;
+}
+
+.item-description {
+font-size: 13px;
+color: var(--text-muted);
+font-style: italic;
+line-height: 1.4;
+}
+
+.addons {
+margin-top: 8px;
+padding-top: 8px;
+border-top: 1px dashed var(--border-color);
+font-size: 12px;
+}
+
+.addons-title {
+color: var(--text-main);
+font-weight: 600;
+margin-bottom: 4px;
+}
+
+.addon-item {
+display: flex;
+justify-content: space-between;
+color: var(--text-muted);
+margin-bottom: 2px;
+}
+
+.footer-note {
+text-align: center;
+padding: 20px;
+font-size: 12px;
+color: var(--text-muted);
+border-top: 1px solid var(--border-color);
+margin-top: 4px;
+}
 </style>
 </head>
-<body><div style="font-family:Calibri,sans-serif;font-size:11pt;"><p><br>&lt;!DOCTYPE html&gt;<br>&lt;html lang="ru"&gt;<br>&lt;head&gt;<br>&lt;meta charset="UTF-8"&gt;<br>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;<br>&lt;title&gt;Craft Town — Цифровое Меню&lt;/title&gt;<br>&lt;style&gt;<br>:root {<br>--bg-color: #121212;<br>--card-bg: #1e1e1e;<br>--accent-color: #ffb703;<br>--accent-hover: #fb8500;<br>--text-main: #f8f9fa;<br>--text-muted: #adb5bd;<br>--border-color: #2a2a2a;<br>}<br><br>* {<br>box-sizing: border-box;<br>margin: 0;<br>padding: 0;<br>-webkit-tap-highlight-color: transparent;<br>}<br><br>body {<br>font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;<br>background:var(--bg-color);mso-highlight:var(--bg-color);<br>color: var(--text-main);<br>line-height: 1.5;<br>padding-bottom: 60px;<br>}<br><br>.header {<br>text-align: center;<br>padding: 40px 20px 20px;<br>background: linear-gradient(180deg, rgba(255,183,3,0.1) 0%, rgba(18,18,18,0) 100%);<br>}<br><br>.header h1 {<br>font-size: 28px;<br>font-weight: 800;<br>letter-spacing: 1px;<br>color: var(--text-main);<br>text-transform: uppercase;<br>margin-bottom: 5px;<br>}<br><br>.header p {<br>color: var(--accent-color);<br>font-size: 14px;<br>letter-spacing: 2px;<br>text-transform: uppercase;<br>font-weight: 600;<br>}<br><br>.nav-categories {<br>position: sticky;<br>top: 0;<br>background:rgba(18, 18, 18, 0.95);mso-highlight:rgba(18, 18, 18, 0.95);<br>backdrop-filter: blur(10px);<br>z-index: 100;<br>border-bottom: 1px solid var(--border-color);<br>overflow-x: auto;<br>white-space: nowrap;<br>display: flex;<br>padding: 10px;<br>scrollbar-width: none;<br>}<br><br>.nav-categories::-webkit-scrollbar {<br>display: none;<br>}<br><br>.nav-btn {<br>display: inline-block;<br>background: none;<br>border: none;<br>color: var(--text-muted);<br>padding: 8px 16px;<br>font-size: 14px;<br>font-weight: 600;<br>text-decoration: none;<br>border-radius: 20px;<br>transition: all 0.3s ease;<br>margin-right: 8px;<br>}<br><br>.nav-btn:active, .nav-btn.active {<br>background:var(--accent-color);mso-highlight:var(--accent-color);<br>color: #000;<br>}<br><br>.container {<br>max-width: 600px;<br>margin: 0 auto;<br>padding: 20px;<br>}<br><br>.section-category {<br>margin-bottom: 40px;<br>scroll-margin-top: 70px;<br>}<br><br>.mascot-banner {<br>background:var(--card-bg);mso-highlight:var(--card-bg);<br>border-radius: 16px;<br>padding: 20px;<br>margin-bottom: 20px;<br>border: 1px solid var(--border-color);<br>display: flex;<br>align-items: center;<br>gap: 15px;<br>position: relative;<br>overflow: hidden;<br>}<br><br>.mascot-avatar {<br>width: 70px;<br>height: 70px;<br>background:#2a2a2a;mso-highlight:#2a2a2a;<br>border-radius: 50px;<br>display: flex;<br>align-items: center;<br>justify-content: center;<br>border: 2px solid var(--accent-color);<br>font-size: 30px;<br>flex-shrink: 0;<br>}<br><br>.mascot-info h2 {<br>font-size: 18px;<br>color: var(--text-main);<br>margin-bottom: 4px;<br>}<br><br>.mascot-info p {<br>font-size: 13px;<br>color: var(--accent-color);<br>font-style: italic;<br>}<br><br>.menu-list {<br>display: flex;<br>flex-direction: column;<br>gap: 16px;<br>}<br><br>.menu-item {<br>background:var(--card-bg);mso-highlight:var(--card-bg);<br>border-r<br>adius: 12px;<br>padding: 16px;<br>border: 1px solid var(--border-color);<br>transition: transform 0.2s ease;<br>}<br><br>.menu-item:active {<br>transform: scale(0.98);<br>}<br><br>.item-main {<br>display: flex;<br>justify-content: space-between;<br>align-items: flex-start;<br>gap: 10px;<br>margin-bottom: 6px;<br>}<br><br>.item-title {<br>font-size: 16px;<br>font-weight: 700;<br>color: var(--text-main);<br>}<br><br>.item-price {<br>font-size: 16px;<br>font-weight: 700;<br>color: var(--accent-color);<br>white-space: nowrap;<br>background:rgba(255, 183, 3, 0.1);mso-highlight:rgba(255, 183, 3, 0.1);<br>padding: 2px 10px;<br>border-radius: 8px;<br>}<br><br>.item-meta {<br>font-size: 13px;<br>color: var(--text-muted);<br>margin-bottom: 4px;<br>}<br><br>.item-description {<br>font-size: 13px;<br>color: var(--text-muted);<br>font-style: italic;<br>line-height: 1.4;<br>}<br><br>.addons {<br>margin-top: 8px;<br>padding-top: 8px;<br>border-top: 1px dashed var(--border-color);<br>font-size: 12px;<br>}<br><br>.addons-title {<br>color: var(--text-main);<br>font-weight: 600;<br>margin-bottom: 4px;<br>}<br><br>.addon-item {<br>display: flex;<br>justify-content: space-between;<br>color: var(--text-muted);<br>margin-bottom: 2px;<br>}<br><br>.footer-note {<br>text-align: center;<br>padding: 20px;<br>font-size: 12px;<br>color: var(--text-muted);<br>border-top: 1px solid var(--border-color);<br>margin-top: 4px;<br>}<br>&lt;/style&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br><br>&lt;div class="header"&gt;<br>&lt;h1&gt;Craft Town&lt;/h1&gt;<br>&lt;p&gt;Digital Menu&lt;/p&gt;<br>&lt;/div&gt;<br><br>&lt;div class="nav-categories"&gt;<br>&lt;a href="#beer" class="nav-btn active"&gt;Пиво&lt;/a&gt;<br>&lt;a href="#burgers" class="nav-btn"&gt;Бургеры&lt;/a&gt;<br>&lt;a href="#snacks" class="nav-btn"&gt;Горячее&lt;/a&gt;<br>&lt;a href="#assorti" class="nav-btn"&gt;Закуски&lt;/a&gt;<br>&lt;a href="#drinks" class="nav-btn"&gt;Напитки &amp; Кофе&lt;/a&gt;<br>&lt;/div&gt;<br><br>&lt;div class="container"&gt;<br><br>&lt;!-- КАТЕГОРИЯ: ПИВО --&gt;<br>&lt;div id="beer" class="section-category"&gt;<br>&lt;div class="mascot-banner"&gt;<br>&lt;div class="mascot-avatar"&gt; [👑] &lt;/div&gt;<br>&lt;div class="mascot-info"&gt;<br>&lt;h2&gt;Пиво от пивоварни Augustine&lt;/h2&gt;<br>&lt;p&gt;Хозяин зала Августин: «Наш гордый крафт»&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-list"&gt;<br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;St. Augustine&lt;/span&gt;<br>&lt;span class="item-price"&gt;210 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;Lager | Алк. 4.2%&lt;/div&gt;<br>&lt;div class="item-description"&gt;Классика, с которой началась наша история. Чистый, освежающий вкус.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Manul&lt;/span&gt;<br>&lt;span class="item-price"&gt;210 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;Blanche | Алк. 4.2%&lt;/div&gt;<br>&lt;div class="item-description"&gt;Легкий, пшеничный, с благородным характером дикого хищника.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Black Crane&lt;/span&gt;<br>&lt;span class="item-price"&gt;220 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;Stout | Алк. 5.3%&lt;/div&gt;<br>&lt;div class="item-descr<br>iption"&gt;Темный, плотный, согревающий, как сумерки над сибирской рекой.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Siberian Stag&lt;/span&gt;<br>&lt;span class="item-price"&gt;230 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;APA | Алк. 5.5%&lt;/div&gt;<br>&lt;div class="item-description"&gt;Яркий хмелевой профиль и приятная горчинка для ценителей.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Чешский бунтарь&lt;/span&gt;<br>&lt;span class="item-price"&gt;250 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;Lager | Алк. 4.2%&lt;/div&gt;<br>&lt;div class="item-description"&gt;Традиционный лагер для тех, кто ценит проверенную временем классику.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Крафт привозной&lt;/span&gt;<br>&lt;span class="item-price"&gt;Ассортимент&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-description"&gt;Регулярные новинки на кранах и в стекле. Наличие и стили уточняйте у бармена.&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;!-- КАТЕГОРИЯ: БУРГЕРЫ --&gt;<br>&lt;div id="burgers" class="section-category"&gt;<br>&lt;div class="mascot-banner"&gt;<br>&lt;div class="mascot-avatar"&gt; [🐾] &lt;/div&gt;<br>&lt;div class="mascot-info"&gt;<br>&lt;h2&gt;Бургеры&lt;/h2&gt;<br>&lt;p&gt;Кот Манул: «Любит основательно подкрепиться»&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-list"&gt;<br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Крафт Бургер&lt;/span&gt;<br>&lt;span class="item-price"&gt;390 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-description"&gt;Наш флагман. Идеальный баланс сочной котлеты, овощей и фирменного соуса.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Чизбургер&lt;/span&gt;<br>&lt;span class="item-price"&gt;350 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-description"&gt;Проверенная временем сырная классика, которая никогда не подводит.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Халбургер&lt;/span&gt;<br>&lt;span class="item-price"&gt;430 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-description"&gt;Пикантный бургер с характером. Рекомендуем добавить вяленые томаты!&lt;/div&gt;<br>&lt;div class="addons"&gt;<br>&lt;div class="addons-title"&gt;Дополнительно к бургеру:&lt;/div&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Халапеньо&lt;/span&gt; &lt;span&gt;+50 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Вяленые томаты&lt;/span&gt; &lt;span&gt;+50 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Дополнительная говяжья котлета&lt;/span&gt; &lt;span&gt;+150 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;!-- КАТЕГОРИЯ: ГОРЯЧИЕ ЗАКУСКИ --&gt;<br>&lt;div id="snacks" class="section-category"&gt;<br>&lt;div class="mascot-banner"&gt;<br>&lt;div class="mascot-avatar"&gt; [🦌] &lt;/div&gt;<br>&lt;div class="mascot-info"&gt;<br>&lt;h2&gt;Горячие закуски&lt;/h2&gt;<br>&lt;p&gt;Изубр: «Мощный заряд энергии под бокал пенного»&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-list"&gt;<br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Крылышки в панировке&lt;/span&gt;<br>&lt;span class="item-price"&gt;565 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;330 гр&lt;/div&gt;<br>&lt;div class="item-description"&gt;Суперхрустящие, золотистые крылышки. В большой компании улетают первыми.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Крылышки гриль&lt;/span&gt;<br>&lt;span class="item-price"&gt;450 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;270 гр&lt;/div&gt;<br>&lt;div class="item-description"&gt;С легким дымным ароматом костра и потрясающей сочностью внутри.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Fish and Chips&lt;/span&gt;<br>&lt;span class="item-price"&gt;410 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;350 гр&lt;/div&gt;<br>&lt;div class="item-description"&gt;Рыбные наггетсы с хрустящим картофелем фри — британская классика в пабе.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Ганноверская колбаска с картофелем&lt;/span&gt;<br>&lt;span class="item-price"&gt;400 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;220 гр&lt;/div&gt;<br>&lt;div class="item-description"&gt;Сытный, плотный и основательный выбор для проголодавшихся гостей.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Креветки в панировке&lt;/span&gt;<br>&lt;span class="item-price"&gt;430 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;150 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Стрипсы куриные&lt;/span&gt;<br>&lt;span class="item-price"&gt;290 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;150 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Наггетсы куриные&lt;/span&gt;<br>&lt;span class="item-price"&gt;270 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;180 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Пельмени жареные&lt;/span&gt;<br>&lt;span class="item-price"&gt;270 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;200 гр&lt;/div&gt;<br>&lt;div class="item-description"&gt;Наш любимый сибирский ответ любому зарубежному фастфуду.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Охотничьи колбаски&lt;/span&gt;<br>&lt;span class="item-price"&gt;310 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;150 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Сырные палочки&lt;/span&gt;<br>&lt;span class="item-price"&gt;250 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;150 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Кольца кальмара в<br>кляре&lt;/span&gt;<br>&lt;span class="item-price"&gt;220 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;100 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Гренки чесночные&lt;/span&gt;<br>&lt;span class="item-price"&gt;200 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;100 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Луковые кольца&lt;/span&gt;<br>&lt;span class="item-price"&gt;200 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;170 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Батат фри&lt;/span&gt;<br>&lt;span class="item-price"&gt;250 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;150 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Картофель Айдахо&lt;/span&gt;<br>&lt;span class="item-price"&gt;240 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;155 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Картофель фри&lt;/span&gt;<br>&lt;span class="item-price"&gt;230 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;150 гр&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;!-- КАТЕГОРИЯ: АССОРТИ И ХОЛОДНЫЕ ЗАКУСКИ --&gt;<br>&lt;div id="assorti" class="section-category"&gt;<br>&lt;div class="mascot-banner"&gt;<br>&lt;div class="mascot-avatar"&gt; [🦅] &lt;/div&gt;<br>&lt;div class="mascot-info"&gt;<br>&lt;h2&gt;Ассорти и холодные закуски&lt;/h2&gt;<br>&lt;p&gt;Журавль: «Идеально, чтобы поклевать в компании друзей»&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-list"&gt;<br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Тарелка №3 (Большой фритюр)&lt;/span&gt;<br>&lt;span class="item-price"&gt;930 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;620 гр&lt;/div&gt;<br>&lt;div class="item-description"&gt;Крылышки гриль, крылья в панировке, картофель Айдахо, наггетсы. Готовое комбо для компании.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Тарелка №4 (Снэк Микс)&lt;/span&gt;<br>&lt;span class="item-price"&gt;700 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;450 гр&lt;/div&gt;<br>&lt;div class="item-description"&gt;Картофель Фри, луковые кольца, чесночные гренки, сырные палочки.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Тарелка №2 (Пивной стандарт)&lt;/span&gt;<br>&lt;span class="item-price"&gt;430 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;260 гр&lt;/div&gt;<br>&lt;div class="item-description"&gt;Сухари, арахис, фисташки, кешью, сыр-косичка, мясные чипсы.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Тарелка №1 (Ореховая)&lt;/span&gt;<br>&lt;span class="item-price"&gt;420 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;260 гр&lt;/div&gt;<br>&lt;div class="item-description"&gt;Кешью, фисташки, арахис, хрустящие сухари.&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Сыр копченый соломкой&lt;/span&gt;<br>&lt;span class="item-price"&gt;280 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;100 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Мясные чипсы&lt;/span&gt;<br>&lt;span class="item-price"&gt;280 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;100 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Фисташки&lt;/span&gt;<br>&lt;span class="item-price"&gt;290 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;100 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Кешью&lt;/span&gt;<br>&lt;span class="item-price"&gt;250 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;100 гр&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Арахис / Сухари&lt;/span&gt;<br>&lt;span class="item-price"&gt;100 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="item-meta"&gt;100 гр&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;!-- КАТЕГОРИЯ: КОФЕ И НАПИТКИ --&gt;<br>&lt;div id="drinks" class="section-category"&gt;<br>&lt;div class="mascot-banner"&gt;<br>&lt;div class="mascot-avatar"&gt; [☕] &lt;/div&gt;<br>&lt;div class="mascot-info"&gt;<br>&lt;h2&gt;Кофе и Б/А Напитки&lt;/h2&gt;<br>&lt;p&gt;Бодрость и свежесть в любое время&lt;/p&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-list"&gt;<br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Классический кофе&lt;/span&gt;<br>&lt;span class="item-price"&gt;от 95 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="addons"&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Эспрессо&lt;/span&gt; &lt;span&gt;100 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Двойной эспрессо&lt;/span&gt; &lt;span&gt;200 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Американо&lt;/span&gt; &lt;span&gt;95 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Капучино&lt;/span&gt; &lt;span&gt;110 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Латте&lt;/span&gt; &lt;span&gt;110 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Особые напитки&lt;/span&gt;<br>&lt;span class="item-price"&gt;от 110 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="addons"&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Банановый раф&lt;/span&gt; &lt;span&gt;115 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Мокачино&lt;/span&gt; &lt;span&gt;130 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Горячий шоколад&lt;/span&gt; &lt;span&gt;110 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;div class="menu-item"&gt;<br>&lt;div class="item-main"&gt;<br>&lt;span class="item-title"&gt;Освежающие напитки&lt;/span&gt;<br>&lt;span class="item-price"&gt;от 120 ₽&lt;/span&gt;<br>&lt;/div&gt;<br>&lt;div class="addons"&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Легенда Байкала (газ/н.<br>газ)&lt;/span&gt; &lt;span&gt;200 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Monster Energy (в ассорт.)&lt;/span&gt; &lt;span&gt;300 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Кола / Фанта / Пепси / Dr.Pepper (0.33)&lt;/span&gt; &lt;span&gt;180 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;div class="addon-item"&gt;&lt;span&gt;Квас&lt;/span&gt; &lt;span&gt;120 ₽&lt;/span&gt;&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br>&lt;/div&gt;<br><br>&lt;/div&gt;<br><br>&lt;div class="footer-note"&gt;<br>&lt;p&gt; [©] Craft Town. Цены указаны в рублях. Приятного отдыха!&lt;/p&gt;<br>&lt;/div&gt;<br><br>&lt;script&gt;<br>const buttons = document.querySelectorAll('.nav-btn');<br>buttons.forEach(btn =&gt; {<br>btn.addEventListener('click', () =&gt; {<br>buttons.forEach(b =&gt; b.classList.remove('active'));<br>btn.classList.add('active');<br>});<br>});<br>&lt;/script&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;<br>&nbsp;</p></div></body></html>
+<body>
+
+<div class="header">
+<h1>Craft Town</h1>
+<p>Digital Menu</p>
+</div>
+
+<div class="nav-categories">
+<a href="#beer" class="nav-btn active">Пиво</a>
+<a href="#burgers" class="nav-btn">Бургеры</a>
+<a href="#snacks" class="nav-btn">Горячее</a>
+<a href="#assorti" class="nav-btn">Закуски</a>
+<a href="#drinks" class="nav-btn">Напитки & Кофе</a>
+</div>
+
+<div class="container">
+
+<!-- КАТЕГОРИЯ: ПИВО -->
+<div id="beer" class="section-category">
+<div class="mascot-banner">
+<div class="mascot-avatar"> [👑] </div>
+<div class="mascot-info">
+<h2>Пиво от пивоварни Augustine</h2>
+<p>Хозяин зала Августин: «Наш гордый крафт»</p>
+</div>
+</div>
+
+<div class="menu-list">
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">St. Augustine</span>
+<span class="item-price">210 ₽</span>
+</div>
+<div class="item-meta">Lager | Алк. 4.2%</div>
+<div class="item-description">Классика, с которой началась наша история. Чистый, освежающий вкус.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Manul</span>
+<span class="item-price">210 ₽</span>
+</div>
+<div class="item-meta">Blanche | Алк. 4.2%</div>
+<div class="item-description">Легкий, пшеничный, с благородным характером дикого хищника.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Black Crane</span>
+<span class="item-price">220 ₽</span>
+</div>
+<div class="item-meta">Stout | Алк. 5.3%</div>
+<div class="item-description">Темный, плотный, согревающий, как сумерки над сибирской рекой.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Siberian Stag</span>
+<span class="item-price">230 ₽</span>
+</div>
+<div class="item-meta">APA | Алк. 5.5%</div>
+<div class="item-description">Яркий хмелевой профиль и приятная горчинка для ценителей.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Чешский бунтарь</span>
+<span class="item-price">250 ₽</span>
+</div>
+<div class="item-meta">Lager | Алк. 4.2%</div>
+<div class="item-description">Традиционный лагер для тех, кто ценит проверенную временем классику.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Крафт привозной</span>
+<span class="item-price">Ассортимент</span>
+</div>
+<div class="item-description">Регулярные новинки на кранах и в стекле. Наличие и стили уточняйте у бармена.</div>
+</div>
+</div>
+</div>
+
+<!-- КАТЕГОРИЯ: БУРГЕРЫ -->
+<div id="burgers" class="section-category">
+<div class="mascot-banner">
+<div class="mascot-avatar"> [🐾] </div>
+<div class="mascot-info">
+<h2>Бургеры</h2>
+<p>Кот Манул: «Любит основательно подкрепиться»</p>
+</div>
+</div>
+
+<div class="menu-list">
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Крафт Бургер</span>
+<span class="item-price">390 ₽</span>
+</div>
+<div class="item-description">Наш флагман. Идеальный баланс сочной котлеты, овощей и фирменного соуса.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Чизбургер</span>
+<span class="item-price">350 ₽</span>
+</div>
+<div class="item-description">Проверенная временем сырная классика, которая никогда не подводит.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Халбургер</span>
+<span class="item-price">430 ₽</span>
+</div>
+<div class="item-description">Пикантный бургер с характером. Рекомендуем добавить вяленые томаты!</div>
+<div class="addons">
+<div class="addons-title">Дополнительно к бургеру:</div>
+<div class="addon-item"><span>Халапеньо</span> <span>+50 ₽</span></div>
+<div class="addon-item"><span>Вяленые томаты</span> <span>+50 ₽</span></div>
+<div class="addon-item"><span>Дополнительная говяжья котлета</span> <span>+150 ₽</span></div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- КАТЕГОРИЯ: ГОРЯЧИЕ ЗАКУСКИ -->
+<div id="snacks" class="section-category">
+<div class="mascot-banner">
+<div class="mascot-avatar"> [🦌] </div>
+<div class="mascot-info">
+<h2>Горячие закуски</h2>
+<p>Изубр: «Мощный заряд энергии под бокал пенного»</p>
+</div>
+</div>
+
+<div class="menu-list">
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Крылышки в панировке</span>
+<span class="item-price">565 ₽</span>
+</div>
+<div class="item-meta">330 гр</div>
+<div class="item-description">Суперхрустящие, золотистые крылышки. В большой компании улетают первыми.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Крылышки гриль</span>
+<span class="item-price">450 ₽</span>
+</div>
+<div class="item-meta">270 гр</div>
+<div class="item-description">С легким дымным ароматом костра и потрясающей сочностью внутри.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Fish and Chips</span>
+<span class="item-price">410 ₽</span>
+</div>
+<div class="item-meta">350 гр</div>
+<div class="item-description">Рыбные наггетсы с хрустящим картофелем фри — британская классика в пабе.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Ганноверская колбаска с картофелем</span>
+<span class="item-price">400 ₽</span>
+</div>
+<div class="item-meta">220 гр</div>
+<div class="item-description">Сытный, плотный и основательный выбор для проголодавшихся гостей.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Креветки в панировке</span>
+<span class="item-price">430 ₽</span>
+</div>
+<div class="item-meta">150 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Стрипсы куриные</span>
+<span class="item-price">290 ₽</span>
+</div>
+<div class="item-meta">150 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Наггетсы куриные</span>
+<span class="item-price">270 ₽</span>
+</div>
+<div class="item-meta">180 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Пельмени жареные</span>
+<span class="item-price">270 ₽</span>
+</div>
+<div class="item-meta">200 гр</div>
+<div class="item-description">Наш любимый сибирский ответ любому зарубежному фастфуду.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Охотничьи колбаски</span>
+<span class="item-price">310 ₽</span>
+</div>
+<div class="item-meta">150 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Сырные палочки</span>
+<span class="item-price">250 ₽</span>
+</div>
+<div class="item-meta">150 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Кольца кальмара в кляре</span>
+<span class="item-price">220 ₽</span>
+</div>
+<div class="item-meta">100 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Гренки чесночные</span>
+<span class="item-price">200 ₽</span>
+</div>
+<div class="item-meta">100 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Луковые кольца</span>
+<span class="item-price">200 ₽</span>
+</div>
+<div class="item-meta">170 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Батат фри</span>
+<span class="item-price">250 ₽</span>
+</div>
+<div class="item-meta">150 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Картофель Айдахо</span>
+<span class="item-price">240 ₽</span>
+</div>
+<div class="item-meta">155 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Картофель фри</span>
+<span class="item-price">230 ₽</span>
+</div>
+<div class="item-meta">150 гр</div>
+</div>
+</div>
+</div>
+
+<!-- КАТЕГОРИЯ: АССОРТИ И ХОЛОДНЫЕ ЗАКУСКИ -->
+<div id="assorti" class="section-category">
+<div class="mascot-banner">
+<div class="mascot-avatar"> [🦅] </div>
+<div class="mascot-info">
+<h2>Ассорти и холодные закуски</h2>
+<p>Журавль: «Идеально, чтобы поклевать в компании друзей»</p>
+</div>
+</div>
+
+<div class="menu-list">
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Тарелка №3 (Большой фритюр)</span>
+<span class="item-price">930 ₽</span>
+</div>
+<div class="item-meta">620 гр</div>
+<div class="item-description">Крылышки гриль, крылья в панировке, картофель Айдахо, наггетсы. Готовое комбо для компании.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Тарелка №4 (Снэк Микс)</span>
+<span class="item-price">700 ₽</span>
+</div>
+<div class="item-meta">450 гр</div>
+<div class="item-description">Картофель Фри, луковые кольца, чесночные гренки, сырные палочки.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Тарелка №2 (Пивной стандарт)</span>
+<span class="item-price">430 ₽</span>
+</div>
+<div class="item-meta">260 гр</div>
+<div class="item-description">Сухари, арахис, фисташки, кешью, сыр-косичка, мясные чипсы.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Тарелка №1 (Ореховая)</span>
+<span class="item-price">420 ₽</span>
+</div>
+<div class="item-meta">260 гр</div>
+<div class="item-description">Кешью, фисташки, арахис, хрустящие сухари.</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Сыр копченый соломкой</span>
+<span class="item-price">280 ₽</span>
+</div>
+<div class="item-meta">100 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Мясные чипсы</span>
+<span class="item-price">280 ₽</span>
+</div>
+<div class="item-meta">100 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Фисташки</span>
+<span class="item-price">290 ₽</span>
+</div>
+<div class="item-meta">100 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Кешью</span>
+<span class="item-price">250 ₽</span>
+</div>
+<div class="item-meta">100 гр</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Арахис / Сухари</span>
+<span class="item-price">100 ₽</span>
+</div>
+<div class="item-meta">100 гр</div>
+</div>
+</div>
+</div>
+
+<!-- КАТЕГОРИЯ: КОФЕ И НАПИТКИ -->
+<div id="drinks" class="section-category">
+<div class="mascot-banner">
+<div class="mascot-avatar"> [☕] </div>
+<div class="mascot-info">
+<h2>Кофе и Б/А Напитки</h2>
+<p>Бодрость и свежесть в любое время</p>
+</div>
+</div>
+
+<div class="menu-list">
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Классический кофе</span>
+<span class="item-price">от 95 ₽</span>
+</div>
+<div class="addons">
+<div class="addon-item"><span>Эспрессо</span> <span>100 ₽</span></div>
+<div class="addon-item"><span>Двойной эспрессо</span> <span>200 ₽</span></div>
+<div class="addon-item"><span>Американо</span> <span>95 ₽</span></div>
+<div class="addon-item"><span>Капучино</span> <span>110 ₽</span></div>
+<div class="addon-item"><span>Латте</span> <span>110 ₽</span></div>
+</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Особые напитки</span>
+<span class="item-price">от 110 ₽</span>
+</div>
+<div class="addons">
+<div class="addon-item"><span>Банановый раф</span> <span>115 ₽</span></div>
+<div class="addon-item"><span>Мокачино</span> <span>130 ₽</span></div>
+<div class="addon-item"><span>Горячий шоколад</span> <span>110 ₽</span></div>
+</div>
+</div>
+
+<div class="menu-item">
+<div class="item-main">
+<span class="item-title">Освежающие напитки</span>
+<span class="item-price">от 120 ₽</span>
+</div>
+<div class="addons">
+<div class="addon-item"><span>Легенда Байкала (газ/н. газ)</span> <span>200 ₽</span></div>
+<div class="addon-item"><span>Monster Energy (в ассорт.)</span> <span>300 ₽</span></div>
+<div class="addon-item"><span>Кола / Фанта / Пепси / Dr.Pepper (0.33)</span> <span>180 ₽</span></div>
+<div class="addon-item"><span>Квас</span> <span>120 ₽</span></div>
+</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<div class="footer-note">
+<p> [©] Craft Town. Цены указаны в рублях. Приятного отдыха!</p>
+</div>
+
+<script>
+const buttons = document.querySelectorAll('.nav-btn');
+buttons.forEach(btn => {
+btn.addEventListener('click', () => {
+buttons.forEach(b => b.classList.remove('active'));
+btn.classList.add('active');
+});
+});
+</script>
+</body>
+</html>
