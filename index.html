@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Craft Town — Цифровое Меню</title>
+    <title>Craft Town — Меню</title>
     <style>
         :root {
             --bg-color: #0b0c10;
@@ -23,7 +23,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
             line-height: 1.5;
@@ -162,12 +162,6 @@
             border-radius: 16px;
             padding: 18px;
             border: 1px solid var(--border-color);
-            transition: transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .menu-item:active {
-            transform: scale(0.98);
-            border-color: var(--accent-color);
         }
 
         .item-main {
@@ -264,7 +258,6 @@
 
     <div class="container">
 
-        <!-- КАТЕГОРИЯ: ПИВО -->
         <div id="beer" class="section-category">
             <div class="mascot-banner">
                 <div class="mascot-avatar">
@@ -332,7 +325,6 @@
             </div>
         </div>
 
-        <!-- КАТЕГОРИЯ: БУРГЕРЫ -->
         <div id="burgers" class="section-category">
             <div class="mascot-banner">
                 <div class="mascot-avatar">
@@ -377,7 +369,6 @@
             </div>
         </div>
 
-        <!-- КАТЕГОРИЯ: ГОРЯЧИЕ ЗАКУСКИ -->
         <div id="snacks" class="section-category">
             <div class="mascot-banner">
                 <div class="mascot-avatar">
@@ -525,7 +516,6 @@
             </div>
         </div>
 
-        <!-- КАТЕГОРИЯ: АССОРТИ И ХОЛОДНЫЕ ЗАКУСКИ -->
         <div id="assorti" class="section-category">
             <div class="mascot-banner">
                 <div class="mascot-avatar">
@@ -548,3 +538,141 @@
                 </div>
 
                 <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-title">Тарелка №4 (Снэк Микс)</span>
+                        <span class="item-price">700 ₽</span>
+                    </div>
+                    <div class="item-meta">450 гр</div>
+                    <div class="item-description">Картофель Фри, луковые кольца, чесночные гренки, сырные палочки.</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-title">Тарелка №2 (Пивной стандарт)</span>
+                        <span class="item-price">430 ₽</span>
+                    </div>
+                    <div class="item-meta">260 гр</div>
+                    <div class="item-description">Сухари, арахис, фисташки, кешью, сыр-косичка, мясные чипсы.</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-title">Тарелка №1 (Ореховая)</span>
+                        <span class="item-price">420 ₽</span>
+                    </div>
+                    <div class="item-meta">260 гр</div>
+                    <div class="item-description">Кешью, фисташки, арахис, хрустящие сухари.</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-title">Сыр копченый соломкой</span>
+                        <span class="item-price">280 ₽</span>
+                    </div>
+                    <div class="item-meta">100 гр</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-title">Мясные чипсы</span>
+                        <span class="item-price">280 ₽</span>
+                    </div>
+                    <div class="item-meta">100 гр</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-title">Фисташки</span>
+                        <span class="item-price">290 ₽</span>
+                    </div>
+                    <div class="item-meta">100 гр</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-title">Кешью</span>
+                        <span class="item-price">250 ₽</span>
+                    </div>
+                    <div class="item-meta">100 гр</div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-title">Арахис / Сухари</span>
+                        <span class="item-price">100 ₽</span>
+                    </div>
+                    <div class="item-meta">100 гр</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="drinks" class="section-category">
+            <div class="mascot-banner">
+                <div class="mascot-avatar">
+                    <div style="font-size: 30px; line-height: 75px; text-align: center;">☕</div>
+                </div>
+                <div class="mascot-info">
+                    <h2>Кофе и Б/А Напитки</h2>
+                    <p>Бодрость и свежесть в любое время</p>
+                </div>
+            </div>
+
+            <div class="menu-list">
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-title">Классический кофе</span>
+                        <span class="item-price">от 95 ₽</span>
+                    </div>
+                    <div class="addons">
+                        <div class="addon-item"><span>Эспрессо</span> <span>100 ₽</span></div>
+                        <div class="addon-item"><span>Двойной эспрессо</span> <span>200 ₽</span></div>
+                        <div class="addon-item"><span>Американо</span> <span>95 ₽</span></div>
+                        <div class="addon-item"><span>Капучино</span> <span>110 ₽</span></div>
+                        <div class="addon-item"><span>Латте</span> <span>110 ₽</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-title">Особые напитки</span>
+                        <span class="item-price">от 110 ₽</span>
+                    </div>
+                    <div class="addons">
+                        <div class="addon-item"><span>Банановый раф</span> <span>115 ₽</span></div>
+                        <div class="addon-item"><span>Мокачино</span> <span>130 ₽</span></div>
+                        <div class="addon-item"><span>Горячий шоколад</span> <span>110 ₽</span></div>
+                    </div>
+                </div>
+
+                <div class="menu-item">
+                    <div class="item-main">
+                        <span class="item-title">Освежающие напитки</span>
+                        <span class="item-price">от 120 ₽</span>
+                    </div>
+                    <div class="addons">
+                        <div class="addon-item"><span>Легенда Байкала (газ/н.газ)</span> <span>200 ₽</span></div>
+                        <div class="addon-item"><span>Monster Energy (в ассорт.)</span> <span>300 ₽</span></div>
+                        <div class="addon-item"><span>Кола / Фанта / Пепси / Dr.Pepper (0.33)</span> <span>180 ₽</span></div>
+                        <div class="addon-item"><span>Квас</span> <span>120 ₽</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-note">
+        <p>© Craft Town. Цены указаны в рублях. Приятного отдыха!</p>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('.nav-btn');
+        buttons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                buttons.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
