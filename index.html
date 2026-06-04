@@ -2,8 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Craft Town — Меню</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Craft Town — Цифровое Меню</title>
     <style>
         :root {
             --bg-color: #0b0c10;
@@ -142,6 +142,16 @@
             font-style: italic;
         }
 
+        .sub-category-title {
+            font-size: 14px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 20px 0 10px 0;
+            width: 100%;
+            grid-column: span 2;
+        }
+
         .products-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -188,6 +198,16 @@
             margin-bottom: 10px;
         }
 
+        .product-addons {
+            font-size: 10px;
+            color: var(--accent-color);
+            background: rgba(255, 183, 3, 0.05);
+            padding: 6px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 1px dashed rgba(255, 183, 3, 0.2);
+        }
+
         .product-price-btn {
             width: 100%;
             background: none;
@@ -222,7 +242,7 @@
         <h1>Craft Town</h1>
         <p>Digital Menu</p>
     </div>
-    
+   
     <div class="nav-categories">
         <a href="#beer" class="nav-btn active">Пиво & Квас</a>
         <a href="#burgers" class="nav-btn">Бургеры</a>
@@ -236,7 +256,7 @@
         <!-- КАТЕГОРИЯ: ПИВО И КВАС -->
         <div id="beer" class="section-category">
             <div class="category-title">Пиво и Крафтквас</div>
-            
+           
             <div class="mascot-banner">
                 <img src="augustine.jpg" class="mascot-avatar" alt="Augustine">
                 <div class="mascot-text">
@@ -247,18 +267,18 @@
 
             <div class="products-grid">
                 <div class="product-card">
-                    <img src="augustine.jpg" class="product-img" alt="St. Augustine">
+                    <img src="augustine.jpg" class="product-img" alt="St. Augustine / Августин">
                     <div class="product-info-block">
-                        <div class="product-title">St. Augustine</div>
+                        <div class="product-title">St. Augustine / Августин</div>
                         <div class="product-meta">Lager | 4.2% | 500 мл</div>
                         <button class="product-price-btn">210 ₽</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <img src="manul.jpg" class="product-img" alt="Manul">
+                    <img src="manul.jpg" class="product-img" alt="Manul / Манул">
                     <div class="product-info-block">
-                        <div class="product-title">Manul</div>
+                        <div class="product-title">Manul / Манул</div>
                         <div class="product-meta">Blanche | 4.2% | 500 мл</div>
                         <button class="product-price-btn">210 ₽</button>
                     </div>
@@ -268,17 +288,35 @@
                     <img src="black_crane.jpg" class="product-img" alt="Black Crane">
                     <div class="product-info-block">
                         <div class="product-title">Black Crane</div>
-                        <div class="product-meta">Stout | 5.5% | 500 мл</div>
+                        <div class="product-meta">Stout | 5.3% | 500 мл</div>
                         <button class="product-price-btn">220 ₽</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <img src="izubr.jpg" class="product-img" alt="Siberian Stag">
+                    <img src="izubr.jpg" class="product-img" alt="Siberian Stag / Изюбрь">
                     <div class="product-info-block">
-                        <div class="product-title">Siberian Stag</div>
+                        <div class="product-title">Siberian Stag / Изюбрь</div>
                         <div class="product-meta">APA | 5.5% | 500 мл</div>
+                        <button class="product-price-btn">230 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="czech_rebel.jpg" class="product-img" alt="Чешский бунтарь">
+                    <div class="product-info-block">
+                        <div class="product-title">Чешский бунтарь</div>
+                        <div class="product-meta">Lager | 4.2%</div>
                         <button class="product-price-btn">250 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="imported_craft.jpg" class="product-img" alt="Крафт привозной">
+                    <div class="product-info-block">
+                        <div class="product-title">Крафт привозной</div>
+                        <div class="product-meta">Наличие уточняйте у бармена</div>
+                        <button class="product-price-btn">В ассортименте</button>
                     </div>
                 </div>
             </div>
@@ -288,30 +326,40 @@
         <div id="burgers" class="section-category">
             <div class="category-title">Бургеры</div>
             <div class="products-grid">
+               
                 <div class="product-card">
-                    <img src="burger_craft.jpg" class="product-img" alt="Бургер Крафт">
+                    <img src="burger_craft.jpg" class="product-img" alt="КрафтБургер">
                     <div class="product-info-block">
-                        <div class="product-title">Бургер Крафт</div>
-                        <div class="product-meta">Фирменный соус | 350 г</div>
-                        <button class="product-price-btn">450 ₽</button>
+                        <div class="product-title">КрафтБургер</div>
+                        <div class="product-meta">Фирменный бургер</div>
+                        <div class="product-addons">
+                            <strong>Доп:</strong> Халапеньо (+50₽) | Вяленые томаты (+50₽) | Котлета (+150₽)
+                        </div>
+                        <button class="product-price-btn">390 ₽</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <img src="burger_cheese.jpg" class="product-img" alt="Сырный Бургер">
+                    <img src="burger_cheese.jpg" class="product-img" alt="Чизбургер">
                     <div class="product-info-block">
-                        <div class="product-title">Сырный Бургер</div>
-                        <div class="product-meta">Много чеддера | 320 г</div>
-                        <button class="product-price-btn">430 ₽</button>
+                        <div class="product-title">Чизбургер</div>
+                        <div class="product-meta">Сырная классика</div>
+                        <div class="product-addons">
+                            <strong>Доп:</strong> Халапеньо (+50₽) | Вяленые томаты (+50₽) | Котлета (+150₽)
+                        </div>
+                        <button class="product-price-btn">350 ₽</button>
                     </div>
                 </div>
 
-                <div class="product-card">
+                <div class="product-card" style="grid-column: span 2;">
                     <img src="burger_halburger.jpg" class="product-img" alt="Халбургер">
                     <div class="product-info-block">
                         <div class="product-title">Халбургер</div>
-                        <div class="product-meta">Острый халапеньо | 340 г</div>
-                        <button class="product-price-btn">460 ₽</button>
+                        <div class="product-meta">Острый характер</div>
+                        <div class="product-addons">
+                            <strong>Дополнительно ко всем бургерам:</strong> Халапеньо (50₽) | Вяленые томаты (50₽) | Котлета говяжья (150₽)
+                        </div>
+                        <button class="product-price-btn">430 ₽</button>
                     </div>
                 </div>
             </div>
@@ -321,48 +369,15 @@
         <div id="snacks" class="section-category">
             <div class="category-title">Закуски</div>
             <div class="products-grid">
-                <div class="product-card">
-                    <img src="garlic_croutons.jpg" class="product-img" alt="Чесночные гренки">
-                    <div class="product-info-block">
-                        <div class="product-title">Чесночные гренки</div>
-                        <div class="product-meta">С соусом тар-тар</div>
-                        <button class="product-price-btn">180 ₽</button>
-                    </div>
-                </div>
+               
+                <div class="sub-category-title">Горячие закуски</div>
 
                 <div class="product-card">
-                    <img src="french_fries.jpg" class="product-img" alt="Картофель фри">
+                    <img src="shrimps.jpg" class="product-img" alt="Креветки в панировке">
                     <div class="product-info-block">
-                        <div class="product-title">Картофель фри</div>
-                        <div class="product-meta">Хрустящий | Кетчуп</div>
-                        <button class="product-price-btn">150 ₽</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="idaho_potatoes.jpg" class="product-img" alt="Картофель Айдахо">
-                    <div class="product-info-block">
-                        <div class="product-title">Картофель Айдахо</div>
-                        <div class="product-meta">Со специями</div>
-                        <button class="product-price-btn">170 ₽</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="onion_rings.jpg" class="product-img" alt="Луковые кольца">
-                    <div class="product-info-block">
-                        <div class="product-title">Луковые кольца</div>
-                        <div class="product-meta">В панировке</div>
-                        <button class="product-price-btn">190 ₽</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="calamari_rings.jpg" class="product-img" alt="Кольца кальмара">
-                    <div class="product-info-block">
-                        <div class="product-title">Кольца кальмара</div>
-                        <div class="product-meta">Обжаренные во фритюре</div>
-                        <button class="product-price-btn">240 ₽</button>
+                        <div class="product-title">Креветки в панировке</div>
+                        <div class="product-meta">150 гр.</div>
+                        <button class="product-price-btn">430 ₽</button>
                     </div>
                 </div>
 
@@ -370,26 +385,26 @@
                     <img src="cheese_stiks.jpg" class="product-img" alt="Сырные палочки">
                     <div class="product-info-block">
                         <div class="product-title">Сырные палочки</div>
-                        <div class="product-meta">Тянущийся сыр</div>
+                        <div class="product-meta">150 гр.</div>
+                        <button class="product-price-btn">250 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="calamari_rings.jpg" class="product-img" alt="Кольца кальмара в кляре">
+                    <div class="product-info-block">
+                        <div class="product-title">Кольца кальмара в кляре</div>
+                        <div class="product-meta">100 гр.</div>
                         <button class="product-price-btn">220 ₽</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <img src="chicken_nuggets.jpg" class="product-img" alt="Наггетсы">
+                    <img src="onion_rings.jpg" class="product-img" alt="Луковые кольца">
                     <div class="product-info-block">
-                        <div class="product-title">Чикен Наггетсы</div>
-                        <div class="product-meta">Куриное филе</div>
-                        <button class="product-price-btn">210 ₽</button>
-                    </div>
-                </div>
-
-                <div class="product-card">
-                    <img src="chicken_strips.jpg" class="product-img" alt="Стрипсы">
-                    <div class="product-info-block">
-                        <div class="product-title">Чикен Стрипсы</div>
-                        <div class="product-meta">В хрустящей панировке</div>
-                        <button class="product-price-btn">230 ₽</button>
+                        <div class="product-title">Луковые кольца</div>
+                        <div class="product-meta">170 гр.</div>
+                        <button class="product-price-btn">200 ₽</button>
                     </div>
                 </div>
 
@@ -397,10 +412,112 @@
                     <img src="batat_fries.jpg" class="product-img" alt="Батат фри">
                     <div class="product-info-block">
                         <div class="product-title">Батат фри</div>
-                        <div class="product-meta">Сладкий картофель</div>
-                        <button class="product-price-btn">260 ₽</button>
+                        <div class="product-meta">150 гр.</div>
+                        <button class="product-price-btn">250 ₽</button>
                     </div>
                 </div>
+
+                <div class="product-card">
+                    <img src="idaho_potatoes.jpg" class="product-img" alt="Картогель Айдахо">
+                    <div class="product-info-block">
+                        <div class="product-title">Картофель Айдахо</div>
+                        <div class="product-meta">155 гр.</div>
+                        <button class="product-price-btn">240 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="french_fries.jpg" class="product-img" alt="Картогель фри">
+                    <div class="product-info-block">
+                        <div class="product-title">Картофель фри</div>
+                        <div class="product-meta">150 гр.</div>
+                        <button class="product-price-btn">230 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="chicken_nuggets.jpg" class="product-img" alt="Наггетсы куриные">
+                    <div class="product-info-block">
+                        <div class="product-title">Наггетсы куриные</div>
+                        <div class="product-meta">180 гр.</div>
+                        <button class="product-price-btn">270 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="pelmeni.jpg" class="product-img" alt="Пельмени жареные">
+                    <div class="product-info-block">
+                        <div class="product-title">Пельмени жареные</div>
+                        <div class="product-meta">200 гр.</div>
+                        <button class="product-price-btn">270 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="garlic_croutons.jpg" class="product-img" alt="Гренки чесночные">
+                    <div class="product-info-block">
+                        <div class="product-title">Гренки чесночные</div>
+                        <div class="product-meta">100 гр.</div>
+                        <button class="product-price-btn">200 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card" style="grid-column: span 2;">
+                    <img src="chicken_strips.jpg" class="product-img" alt="Стрипсы куриные">
+                    <div class="product-info-block">
+                        <div class="product-title">Стрипсы куриные</div>
+                        <div class="product-meta">150 гр.</div>
+                        <button class="product-price-btn">290 ₽</button>
+                    </div>
+                </div>
+
+                <div class="sub-category-title">Холодные закуски</div>
+
+                <div class="product-card">
+                    <img src="cheese_straws.jpg" class="product-img" alt="Сыр копченый соломкой">
+                    <div class="product-info-block">
+                        <div class="product-title">Сыр копченый соломкой</div>
+                        <div class="product-meta">100 гр.</div>
+                        <button class="product-price-btn">280 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="meat_chips.jpg" class="product-img" alt="Мясные чипсы">
+                    <div class="product-info-block">
+                        <div class="product-title">Мясные чипсы</div>
+                        <div class="product-meta">100 гр.</div>
+                        <button class="product-price-btn">280 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="peanuts.jpg" class="product-img" alt="Арахис / Сухари">
+                    <div class="product-info-block">
+                        <div class="product-title">Арахис / Сухари</div>
+                        <div class="product-meta">100 гр.</div>
+                        <button class="product-price-btn">100 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="pistachios.jpg" class="product-img" alt="Фисташки">
+                    <div class="product-info-block">
+                        <div class="product-title">Фисташки</div>
+                        <div class="product-meta">100 гр.</div>
+                        <button class="product-price-btn">290 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card" style="grid-column: span 2;">
+                    <img src="cashews.jpg" class="product-img" alt="Кешью">
+                    <div class="product-info-block">
+                        <div class="product-title">Кешью</div>
+                        <div class="product-meta">100 гр.</div>
+                        <button class="product-price-btn">250 ₽</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -408,12 +525,22 @@
         <div id="platters" class="section-category">
             <div class="category-title">Тарелки / Горячее</div>
             <div class="products-grid">
+               
                 <div class="product-card">
-                    <img src="fish_and_chips.jpg" class="product-img" alt="Фиш энд чипс">
+                    <img src="fish_and_chips.jpg" class="product-img" alt="Fish and chips">
                     <div class="product-info-block">
-                        <div class="product-title">Фиш энд Чипс</div>
-                        <div class="product-meta">Белая рыба в кляре с фри</div>
-                        <button class="product-price-btn">380 ₽</button>
+                        <div class="product-title">Fish and chips</div>
+                        <div class="product-meta">Рыбные наггетсы + фри | 350 гр.</div>
+                        <button class="product-price-btn">410 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="kolbasa_fri.jpg" class="product-img" alt="Ганноверская колбаска с картофелем">
+                    <div class="product-info-block">
+                        <div class="product-title">Ганноверская колбаска</div>
+                        <div class="product-meta">С картофелем | 220 гр.</div>
+                        <button class="product-price-btn">400 ₽</button>
                     </div>
                 </div>
 
@@ -421,60 +548,212 @@
                     <img src="hunting_sausages.jpg" class="product-img" alt="Охотничьи колбаски">
                     <div class="product-info-block">
                         <div class="product-title">Охотничьи колбаски</div>
-                        <div class="product-meta">Поджаренные гриль</div>
-                        <button class="product-price-btn">340 ₽</button>
+                        <div class="product-meta">150 гр.</div>
+                        <button class="product-price-btn">310 ₽</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <img src="kolbasa_fri.jpg" class="product-img" alt="Колбаски с фри">
+                    <img src="wings_grill.jpg" class="product-img" alt="Крылышки гриль">
                     <div class="product-info-block">
-                        <div class="product-title">Колбаски с картофелем фри</div>
-                        <div class="product-meta">Сытное ассорти</div>
-                        <button class="product-price-btn">360 ₽</button>
+                        <div class="product-title">Крылышки гриль</div>
+                        <div class="product-meta">270 гр.</div>
+                        <button class="product-price-btn">450 ₽</button>
                     </div>
                 </div>
+
+                <div class="product-card" style="grid-column: span 2;">
+                    <img src="wings_breaded.jpg" class="product-img" alt="Крылышки в панировке">
+                    <div class="product-info-block">
+                        <div class="product-title">Крылышки в панировке</div>
+                        <div class="product-meta">330 гр.</div>
+                        <button class="product-price-btn">565 ₽</button>
+                    </div>
+                </div>
+
+                <div class="sub-category-title">Ассорти Сеты</div>
+
+                <div class="product-card">
+                    <img src="platter1.jpg" class="product-img" alt="Тарелка 1">
+                    <div class="product-info-block">
+                        <div class="product-title">Тарелка 1</div>
+                        <div class="product-meta">260 гр.</div>
+                        <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 8px;">Кешью, Фисташки, Арахис, Сухари</div>
+                        <button class="product-price-btn">420 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="platter2.jpg" class="product-img" alt="Тарелка 2">
+                    <div class="product-info-block">
+                        <div class="product-title">Тарелка 2</div>
+                        <div class="product-meta">260 гр.</div>
+                        <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 8px;">Сухари, Арахис, Фисташки, Кешью, Сыр косичка, Мясные чипсы</div>
+                        <button class="product-price-btn">430 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="platter3.jpg" class="product-img" alt="Тарелка 3">
+                    <div class="product-info-block">
+                        <div class="product-title">Тарелка 3</div>
+                        <div class="product-meta">620 гр.</div>
+                        <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 8px;">Крылышки гриль, Крылья в панировке, Картофель Айдахо, Наггетсы</div>
+                        <button class="product-price-btn">930 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <img src="platter4.jpg" class="product-img" alt="Тарелка 4">
+                    <div class="product-info-block">
+                        <div class="product-title">Тарелка 4</div>
+                        <div class="product-meta">450 гр.</div>
+                        <div style="font-size: 10px; color: var(--text-muted); margin-bottom: 8px;">Картофель Фри, Луковые кольца, Гренки, Сырные палочки</div>
+                        <button class="product-price-btn">700 ₽</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <!-- КАТЕГОРИЯ: БЕЗАЛКОГОЛЬНЫЕ -->
+        <!-- КАТЕГОРИЯ: БЕЗАЛКОГОЛЬНЫЕ / НАПИТКИ -->
         <div id="drinks" class="section-category">
-            <div class="category-title">Безалкогольные напитки</div>
+            <div class="category-title">Безалкогольные & Кофе</div>
             <div class="products-grid">
+               
+                <div class="sub-category-title">Кофе</div>
+
                 <div class="product-card">
-                    <img src="kraft_kvas.jpg" class="product-img" alt="Крафт-квас">
                     <div class="product-info-block">
-                        <div class="product-title">Фирменный Крафт-квас</div>
-                        <div class="product-meta">Собственное производство</div>
+                        <div class="product-title">Американо</div>
+                        <div class="product-meta">Классический черный</div>
+                        <button class="product-price-btn">95 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info-block">
+                        <div class="product-title">Эспрессо</div>
+                        <div class="product-meta">Бодрящий шот</div>
                         <button class="product-price-btn">100 ₽</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <img src="czech_rebel.jpg" class="product-img" alt="Czech Rebel безалкогольное">
                     <div class="product-info-block">
-                        <div class="product-title">Czech Rebel б/а</div>
-                        <div class="product-meta">Импортное безалкогольное</div>
-                        <button class="product-price-btn">190 ₽</button>
+                        <div class="product-title">Двойной эспрессо</div>
+                        <div class="product-meta">Двойной заряд</div>
+                        <button class="product-price-btn">200 ₽</button>
                     </div>
                 </div>
 
                 <div class="product-card">
-                    <img src="imported_craft.jpg" class="product-img" alt="Импортный крафт">
                     <div class="product-info-block">
-                        <div class="product-title">Импортный крафт б/а</div>
+                        <div class="product-title">Капучино</div>
+                        <div class="product-meta">С нежной пенкой</div>
+                        <button class="product-price-btn">110 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info-block">
+                        <div class="product-title">Латте</div>
+                        <div class="product-meta">Молочный вкус</div>
+                        <button class="product-price-btn">110 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info-block">
+                        <div class="product-title">Мокачино</div>
+                        <div class="product-meta">С шоколадным вкусом</div>
+                        <button class="product-price-btn">130 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info-block">
+                        <div class="product-title">Банановый раф</div>
+                        <div class="product-meta">Нежный кофейный десерт</div>
+                        <button class="product-price-btn">115 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info-block">
+                        <div class="product-title">Горячий шоколад</div>
+                        <div class="product-meta">Густой и согревающий</div>
+                        <button class="product-price-btn">110 ₽</button>
+                    </div>
+                </div>
+
+                <div class="sub-category-title">Напитки</div>
+
+                <div class="product-card">
+                    <img src="kraft_kvas.jpg" class="product-img" alt="Квас">
+                    <div class="product-info-block">
+                        <div class="product-title">Квас</div>
+                        <div class="product-meta">Освежающий</div>
+                        <button class="product-price-btn">120 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info-block">
+                        <div class="product-title">Легенда Байкала (газ)</div>
+                        <div class="product-meta">Природная вода</div>
+                        <button class="product-price-btn">200 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info-block">
+                        <div class="product-title">Легенда Байкала (н.газ)</div>
+                        <div class="product-meta">Природная вода</div>
+                        <button class="product-price-btn">200 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info-block">
+                        <div class="product-title">Monster Energy</div>
                         <div class="product-meta">В ассортименте</div>
-                        <button class="product-price-btn">220 ₽</button>
+                        <button class="product-price-btn">300 ₽</button>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <div class="product-info-block">
-                        <div class="product-title">Чай в ассортименте</div>
-                        <div class="product-meta">В чайнике | 500 мл</div>
+                        <div class="product-title">Кола</div>
+                        <div class="product-meta">0.33 л</div>
                         <button class="product-price-btn">180 ₽</button>
                     </div>
                 </div>
+
+                <div class="product-card">
+                    <div class="product-info-block">
+                        <div class="product-title">Фанта</div>
+                        <div class="product-meta">0.33 л</div>
+                        <button class="product-price-btn">180 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info-block">
+                        <div class="product-title">Пепси</div>
+                        <div class="product-meta">0.33 л</div>
+                        <button class="product-price-btn">180 ₽</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-info-block">
+                        <div class="product-title">Dr.Pepper</div>
+                        <div class="product-meta">0.33 л</div>
+                        <button class="product-price-btn">180 ₽</button>
+                    </div>
+                </div>
+
             </div>
         </div>
 
